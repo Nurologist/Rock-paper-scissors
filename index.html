@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rock, Paper, Scissors</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                text-align: center;
+            }
+            button {
+                margin: 10px;
+                padding: 10px 20px;
+                font-size: 18px;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <p>Rock, Paper, Scissors</p>
+        <button onclick="link(); game('rock');">Rock</button>
+        <button onclick="link(); game('paper');">Paper</button>
+        <button onclick="link(); game('scissor');">Scissors</button>
+        <button onclick="resetScore();">Reset Score</button>
+        <script>
+            const score = {
+                Win: 0,
+                Loss: 0,
+                Tie: 0
+            };
+
+            let computerMove = '';
+
+            function link() {
+                const randomNumber = Math.random();
+                if (randomNumber >= 0 && randomNumber < 1 / 3) {
+                    computerMove = 'rock';
+                } else if (randomNumber >= 1 / 3 && randomNumber < 2 / 3) {
+                    computerMove = 'scissor';
+                } else {
+                    computerMove = 'paper';
+                }
+            }
+
+            function game(player) {
+                let result = '';
+                switch (true) {
+                    case player === 'rock' && computerMove === 'rock':
+                    case player === 'paper' && computerMove === 'paper':
+                    case player === 'scissor' && computerMove === 'scissor':
+                        result = 'Tie';
+                        break;
+                    case player === 'rock' && computerMove === 'scissor':
+                    case player === 'paper' && computerMove === 'rock':
+                    case player === 'scissor' && computerMove === 'paper':
+                        result = 'You win';
+                        score.Win += 1;
+                        break;
+                    case player === 'rock' && computerMove === 'paper':
+                    case player === 'paper' && computerMove === 'scissor':
+                    case player === 'scissor' && computerMove === 'rock':
+                        result = 'You loss';
+                        score.Loss += 1;
+                        break;
+                }
+                alert(`You picked ${player}. Computer picked ${computerMove}. ${result}. Win ${score.Win}. Loss ${score.Loss}. Tie ${score.Tie}`);
+            }
+
+            function resetScore() {
+                score.Win = 0;
+                score.Loss = 0;
+                score.Tie = 0;
+                alert(`Win ${score.Win}. Loss ${score.Loss}. Tie ${score.Tie}`);
+            }
+        </script>
+    </body>
+</html>
