@@ -48,6 +48,7 @@
                     case player === 'paper' && computerMove === 'paper':
                     case player === 'scissor' && computerMove === 'scissor':
                         result = 'Tie';
+                        score.tie +=1;
                         break;
                     case player === 'rock' && computerMove === 'scissor':
                     case player === 'paper' && computerMove === 'rock':
